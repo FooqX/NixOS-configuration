@@ -1,5 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
@@ -31,17 +30,14 @@
   boot.blacklistedKernelModules = [
   	"iTCO_wdt"
   	"watchdog"
+  	"intel_pmc_bxt"
   ];
   
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -70,8 +66,27 @@
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-  services.gnome.core-developer-tools.enable = true;
+  services.gnome.core-developer-tools.enable = false;
+  
+  # Remove GNOME bloatware.
+  environment.gnome.excludePackages = with pkgs; [
+  	baobab # Disk usage analyzer
+  	geary  # Email client
+  	epiphany # Web browser
+  	gnome-characters
+  	gnome-contacts
+  	gnome-maps
+  	gnome-music
+  	gnome-weather
+  	gnome-connections
+  	gnome-tour
+  	simple-scan
+  	snapshot
+  	showtime # Video player
+  	yelp
+  ];
 
+  # NVIDIA hardware acceleration drivers for wayland
   hardware.graphics = {
     	enable = true;
     	extraPackages = with pkgs; [
@@ -120,6 +135,7 @@
   };
 
   security.sudo.enable = true;
+  
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -156,6 +172,7 @@
     vulkan-validation-layers
     wget
     which
+    wl-clipboard
     zip
     xdg-desktop-portal-gtk
 
@@ -170,7 +187,6 @@
     libva
     libva-utils
     ffmpeg-full
-
   ];
 
   # Fonts setup
@@ -181,11 +197,12 @@
     jetbrains-mono
     nerd-fonts.hack
     cantarell-fonts
-  ];
+  ]; # Font rendering setup
   fonts.fontconfig.subpixel.rgba = "rgb";
   fonts.fontconfig.subpixel.lcdfilter = "light";
   
-  # Environment variables (NVIDIA/Wayland)
+  # Environment variables (Mostly for NVIDIA/Wayland)
+  # Mozilla disable RDD sandbox is missing.
   environment.variables = {
   	LIBVA_DRIVER_NAME = "nvidia";
   	GBM_BACKEND = "nvidia-drm";
@@ -208,20 +225,6 @@
   	nvidiaSettings = true;
   	package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
