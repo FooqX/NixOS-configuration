@@ -1,3 +1,4 @@
+#### Note: this config is updated periodically when I feel like it
 # My system
 ```
 Desktop: GNOME
