@@ -2,7 +2,7 @@
 # My system
 ```
 Desktop: GNOME
-Shell: fish
+Shell: fish (not yet configured)
 Machine:
   Type: Laptop
   System: ASUSTeK product: ASUS TUF Gaming F15 FX507ZE
