@@ -7,6 +7,7 @@ Todo:
 - Configure default font for terminal
 - Install a new terminal (foot)
 - Check whether firefox video hardware acceleration actually works and is configured properly, possibly add new preferences regarding that from arch wiki
+- Install & configure the Rust language.
 - Test flatpak
 
 - Possible switch to unstable channel.
