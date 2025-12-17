@@ -6,6 +6,8 @@ Todo:
 - Configure default shell (fish)
 - Configure default font for terminal
 - Install a new terminal (foot)
+
+- Possible switch to unstable channel.
 # My system
 ```
 Desktop: GNOME
