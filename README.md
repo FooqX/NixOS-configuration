@@ -1,4 +1,11 @@
 #### Note: this config is updated periodically when I feel like it
+
+Todo:
+- Add firefox extensions
+- Add firefox preferences (Betterfox)
+- Configure default shell (fish)
+- Configure default font for terminal
+- Install a new terminal (foot)
 # My system
 ```
 Desktop: GNOME
