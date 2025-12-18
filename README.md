@@ -9,7 +9,8 @@ Todo:
 - Check whether firefox video hardware acceleration actually works and is configured properly, possibly add new preferences regarding that from arch wiki
 - Install & configure the Rust language.
 - Test flatpak
-- Bluetooth pipewire extra configuration for bluetooth headset (wireplumber)
+- Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
+- Install JetBrains toolbox & RustRover
 
 - Possible switch to unstable channel.
 # My system
