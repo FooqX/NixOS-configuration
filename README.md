@@ -1,8 +1,8 @@
 #### Note: this config is updated periodically when I feel like it
 
 Todo:
-- Add firefox extensions
-- Add firefox preferences (Betterfox)
+- Add&Configure firefox extensions
+- Add firefox preferences, using another module. Convert user.js to .nix
 - Configure default shell (fish)
 - Configure default font for terminal
 - Install a new terminal (foot)
