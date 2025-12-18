@@ -124,6 +124,18 @@
     #media-session.enable = true;
   };
 
+  # Bluetooth extra configuration (Pipewire).
+  # Only A2DP, no hands free functionality, only SBC-XQ codec.
+  # todo.
+  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+    "monitor.bluez.properties" = {
+        "bluez5.enable-sbc-xq" = true;
+        "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
+        "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
+        "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+    };
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -146,7 +158,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     curl
-    firefox
+    # firefox
+    (wrapFirefox (firefox-unwrapped.override { pipewireSupport = true;}) {})
     fish
     fastfetch
     freetype
@@ -233,6 +246,17 @@
   networking.firewall.enable = false;
   networking.enableIPv6 = false;
 
+  # Enable xdg desktop integration:
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -240,5 +264,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
