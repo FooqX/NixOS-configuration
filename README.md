@@ -1,12 +1,10 @@
 #### Note: this config is updated periodically when I feel like it
 
 Todo:
-- Add&Configure firefox extensions
-- Add firefox preferences, using another module. Convert user.js to .nix
+- Install LibreWolf browser and configure it.
 - Configure default shell (fish)
 - Configure default font for terminal
 - Install a new terminal (foot)
-- Check whether firefox video hardware acceleration actually works and is configured properly, possibly add new preferences regarding that from arch wiki
 - Install & configure the Rust language.
 - Test flatpak
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
