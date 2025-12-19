@@ -1,12 +1,12 @@
 #### Note: this config is updated periodically when I feel like it
 
 Todo:
-- Install LibreWolf browser and configure it.
+- ~~Install LibreWolf browser~~ and configure it.
 - Configure default shell (fish)
 - Configure default font for terminal
 - Install a new terminal (foot)
 - Install & configure the Rust language.
-- Test flatpak
+~~- Test flatpak~~
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
 - Install JetBrains toolbox & RustRover
 
