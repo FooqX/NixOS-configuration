@@ -6,7 +6,7 @@ Todo:
 - Configure default font for terminal
 - Install a new terminal (foot)
 - Install & configure the Rust language.
-~~- Test flatpak~~
+- ~~Test flatpak~~
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
 - Install JetBrains toolbox & RustRover
 
