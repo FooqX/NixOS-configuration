@@ -3,18 +3,17 @@
 Todo:
 - ~~Install LibreWolf browser and configure it.~~
 - ~~Configure default shell (fish)~~
-- Configure default font for terminal
+- Configure default terminal (Ghostty)
 - ~~Install a new terminal (Ghostty)~~ & configure it
 - Install & configure the Rust language (on a learning folder). (Or C++)
 - ~~Test flatpak~~
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
 - Install JetBrains toolbox & RustRover
-
-- ~~Switch to unstable channel.~~
+- Configure micro editor
 # My system
 ```
 Desktop: GNOME
-Shell: fish (not yet configured)
+Shell: fish
 Machine:
   Type: Laptop
   System: ASUSTeK product: ASUS TUF Gaming F15 FX507ZE
