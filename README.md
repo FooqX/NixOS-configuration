@@ -3,8 +3,6 @@
 Todo:
 - ~~Install LibreWolf browser and configure it.~~
 - ~~Configure default shell (fish)~~
-- ~~Install a new terminal (Ghostty)~~ & configure it
-- ~~Test flatpak~~
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
 - Install JetBrains toolbox & RustRover
 - Configure micro editor
