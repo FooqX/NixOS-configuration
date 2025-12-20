@@ -3,9 +3,7 @@
 Todo:
 - ~~Install LibreWolf browser and configure it.~~
 - ~~Configure default shell (fish)~~
-- Configure default terminal (Ghostty)
 - ~~Install a new terminal (Ghostty)~~ & configure it
-- Install & configure the Rust language (on a learning folder). (Or C++)
 - ~~Test flatpak~~
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
 - Install JetBrains toolbox & RustRover
