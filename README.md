@@ -1,11 +1,8 @@
 #### Note: this config is updated periodically when I feel like it
 
 Todo:
-- ~~Install LibreWolf browser and configure it.~~
-- ~~Configure default shell (fish)~~
 - Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
-- Install JetBrains toolbox & RustRover
-- Configure micro editor
+- Install JetBrains toolbox
 # My system
 ```
 Desktop: GNOME
