@@ -69,6 +69,7 @@
   services.gnome.core-developer-tools.enable = false;
   
   # Remove GNOME bloatware.
+  services.xserver.excludePackages = [ pkgs.xterm ];
   environment.gnome.excludePackages = with pkgs; [
   	baobab # Disk usage analyzer
   	geary  # Email client
@@ -80,10 +81,11 @@
   	gnome-weather
   	gnome-connections
   	gnome-tour
-  	simple-scan
+  	gnome-software
+  	simple-scan # Document scanner
   	snapshot
   	showtime # Video player
-  	yelp
+  	yelp # Gnome help
   ];
 
   # NVIDIA hardware acceleration drivers for wayland
@@ -125,16 +127,16 @@
   };
 
   # Bluetooth extra configuration (Pipewire).
-  # Only A2DP, no hands free functionality, only SBC-XQ codec.
+  # Only A2DP, no hands free functionality, and only SBC-XQ codec.
   # todo.
-  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-    "monitor.bluez.properties" = {
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
-        "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
-        "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-    };
-  };
+  # services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+  #   "monitor.bluez.properties" = {
+  #       "bluez5.enable-sbc-xq" = true;
+  #       "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
+  #       "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
+  #       "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+  #   };
+  # };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -148,8 +150,9 @@
 
   security.sudo.enable = true;
   
-  # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox.enable = false;
+  
+  services.flatpak.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -158,8 +161,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     curl
-    # firefox
-    (wrapFirefox (firefox-unwrapped.override { pipewireSupport = true;}) {})
+    #firefox
+    #librewolf
     fish
     fastfetch
     freetype
@@ -188,6 +191,7 @@
     wl-clipboard
     zip
     xdg-desktop-portal-gtk
+    xdg-utils
 
     # codecs
     gst_all_1.gstreamer
@@ -236,9 +240,16 @@
   	powerManagement.finegrained = false;
   	open = true;
   	nvidiaSettings = true;
-  	package = config.boot.kernelPackages.nvidiaPackages.stable;
+  	package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
+  # Shell setup
+  programs.fish.enable = true;
+  programs.fish.interactiveShellInit = ''
+    set fish_greeting # Disable greeting
+  '';
+  users.defaultUserShell = pkgs.fish;
+  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
