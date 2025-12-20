@@ -2,7 +2,7 @@
 
 Todo:
 - ~~Install LibreWolf browser and configure it.~~
-- Configure default shell (fish)
+- ~~Configure default shell (fish)~~
 - Configure default font for terminal
 - ~~Install a new terminal (Ghostty)~~ & configure it
 - Install & configure the Rust language (on a learning folder). (Or C++)
