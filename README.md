@@ -7,6 +7,7 @@ Todo:
 ```
 Desktop: GNOME
 Shell: fish
+Flatpak apps: Librewolf
 Machine:
   Type: Laptop
   System: ASUSTeK product: ASUS TUF Gaming F15 FX507ZE
