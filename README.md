@@ -1,8 +1,7 @@
 #### Note: this config is updated periodically when I feel like it
 
 Todo:
-- Bluetooth pipewire extra configuration for bluetooth headset (wireplumber) [UNFINISHED]
-- Install JetBrains toolbox
+- Install JetBrains toolbox and some apps there
 # My system
 ```
 Desktop: GNOME
