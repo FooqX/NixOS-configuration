@@ -118,8 +118,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -128,15 +126,16 @@
 
   # Bluetooth extra configuration (Pipewire).
   # Only A2DP, no hands free functionality, and only SBC-XQ codec.
-  # todo.
-  # services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-  #   "monitor.bluez.properties" = {
-  #       "bluez5.enable-sbc-xq" = true;
-  #       "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
-  #       "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
-  #       "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-  #   };
-  # };
+  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+    "monitor.bluez.properties" = {
+      "bluez5.enable-sbc-xq" = true;
+      "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
+      "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
+      "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
+      "bluez5.codecs" = [ "sbc_xq" ];
+      "bluez5.hfphsp-backend" = "none";
+    };
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -148,11 +147,11 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  security.sudo.enable = true;
+  security.sudo.enable = true; # Enable sudo
   
-  programs.firefox.enable = false;
+  programs.firefox.enable = false; # Disable firefox
   
-  services.flatpak.enable = true;
+  services.flatpak.enable = true; # Enable flatpak
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -160,9 +159,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bibata-cursors
     curl
-    #firefox
-    #librewolf
+    #firefox # not needed
+    #librewolf # installed from flatpak
     fish
     fastfetch
     freetype
@@ -214,16 +214,18 @@
     jetbrains-mono
     nerd-fonts.hack
     cantarell-fonts
+    texlivePackages.opensans
   ]; # Font rendering setup
   fonts.fontconfig.subpixel.rgba = "rgb";
   fonts.fontconfig.subpixel.lcdfilter = "light";
   
   # Environment variables (Mostly for NVIDIA/Wayland)
-  # Mozilla disable RDD sandbox is missing.
   environment.variables = {
   	LIBVA_DRIVER_NAME = "nvidia";
   	GBM_BACKEND = "nvidia-drm";
   	__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  	MOZ_ENABLE_WAYLAND = "1";
+  	MOZ_DISABLE_RDD_SANDBOX = "1";
   	
   	NIXOS_OZONE_WL = "1";
   };
@@ -248,7 +250,7 @@
   programs.fish.interactiveShellInit = ''
     set fish_greeting # Disable greeting
   '';
-  users.defaultUserShell = pkgs.fish;
+  users.defaultUserShell = pkgs.fish; # Make fish the default shell
   
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
