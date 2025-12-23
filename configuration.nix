@@ -16,9 +16,12 @@
   # Use latest kernel. _latest
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  #"nvidia-drm.fbdev=1"
   boot.kernelParams = [
-  	"nvidia-drm.fbdev=1"
-  	
+    "nouveau.modeset=0"
+    #"nvidia-drm.modeset=1"
+    "ibt=off"
+    
   	"nowatchdog" # disable watchdog
   	"nmi_watchdog=0" # disable watchdog
   	"intel_idle.max_cstate=2" # less parking
@@ -26,11 +29,22 @@
   	"usbcore.autosuspend=-1" # no usb suspend
   ];
 
-  # Blacklist watchdog kernel modules
+  # boot.initrd.kernelModules = [
+  # 	"nvidia"
+  # 	"nvidia_modeset"
+  # 	"nvidia_uvm"
+  # 	"nvidia_drm"
+  # ];
+
   boot.blacklistedKernelModules = [
   	"iTCO_wdt"
   	"watchdog"
   	"intel_pmc_bxt"
+  	"i915"
+
+  	"nouveau"
+  	"nova_core"
+  	"nvidiafb"
   ];
   
   # Enable bluetooth
@@ -240,9 +254,9 @@
   	# of just the bare essentials.
   	powerManagement.enable = false;
   	powerManagement.finegrained = false;
-  	open = true;
+  	open = true; # was true
   	nvidiaSettings = true;
-  	package = config.boot.kernelPackages.nvidiaPackages.beta;
+  	package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # Shell setup
