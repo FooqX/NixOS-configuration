@@ -3,7 +3,6 @@ Nvidia broke but i fixed it. You cannot believe how wonderful that is. Thank you
 
 Todo:
 - Install JetBrains toolbox and some apps there
-- Make an alias for the update command
 # My system
 ```
 Desktop: GNOME
