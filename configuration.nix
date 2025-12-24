@@ -16,11 +16,9 @@
   # Use latest kernel. _latest
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  #"nvidia-drm.fbdev=1"
   boot.kernelParams = [
     "nouveau.modeset=0"
-    #"nvidia-drm.modeset=1"
-    "ibt=off"
+    "nvidia-drm.fbdev=1"
     
   	"nowatchdog" # disable watchdog
   	"nmi_watchdog=0" # disable watchdog
@@ -29,6 +27,7 @@
   	"usbcore.autosuspend=-1" # no usb suspend
   ];
 
+  # Load nvidia modules early (it's unstable, random bugs appear)
   # boot.initrd.kernelModules = [
   # 	"nvidia"
   # 	"nvidia_modeset"
@@ -37,16 +36,19 @@
   # ];
 
   boot.blacklistedKernelModules = [
-  	"iTCO_wdt"
+  	"iTCO_wdt" # watchdog
   	"watchdog"
-  	"intel_pmc_bxt"
-  	"i915"
+  	"intel_pmc_bxt" # watchdog
+  	"i915" # intel gpu
 
-  	"nouveau"
-  	"nova_core"
-  	"nvidiafb"
+  	"nouveau" # conflicts with nvidia
+  	"nova_core" # conflicts with nvidia
+  	"nvidiafb" # deprecated
   ];
 
+  boot.extraModprobeConfig = ''
+  	options iwlwifi bt_coex_active=0 power_save=0 uapsd_disable=1 d0i3_disable=1
+  '';
   # boot.extraModulePackages = with config.boot.kernelPackages; [
   # 	nullfs # It's like dev null but for directories
   # ];
@@ -115,6 +117,7 @@
     		libvdpau-va-gl
     		nvidia-vaapi-driver
     		egl-wayland
+    		mesa
     	];
   };
   
@@ -143,17 +146,15 @@
   };
 
   # Bluetooth extra configuration (Pipewire).
-  # Only A2DP, no hands free functionality, and only SBC-XQ codec.
-  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-    "monitor.bluez.properties" = {
-      "bluez5.enable-sbc-xq" = true;
-      "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
-      "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
-      "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
-      "bluez5.codecs" = [ "sbc_xq" ];
-      "bluez5.hfphsp-backend" = "none";
-    };
-  };
+  # services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+  #   "monitor.bluez.properties" = {
+  #     "bluez5.enable-sbc-xq" = true;
+  #     "bluez5.enable-msbc" = false; # Disable mSBC codec (wideband speech codec for HFP/HSP).
+  #     "bluez5.enable-hw-volume" = false; # Disable hardware volume control on headphones.
+  #     "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
+  #     "bluez5.codecs" = [ "sbc_xq" ];
+  #   };
+  # };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -247,6 +248,9 @@
   	
   	NIXOS_OZONE_WL = "1";
   	MICRO_TRUECOLOR = "1";
+
+  	__GL_VRR_ALLOWED = "0";
+  	__GL_GSYNC_ALLOWED = "0";
   };
 
   # NVIDIA setup
