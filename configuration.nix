@@ -46,6 +46,10 @@
   	"nova_core"
   	"nvidiafb"
   ];
+
+  # boot.extraModulePackages = with config.boot.kernelPackages; [
+  # 	nullfs # It's like dev null but for directories
+  # ];
   
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -242,6 +246,7 @@
   	MOZ_DISABLE_RDD_SANDBOX = "1";
   	
   	NIXOS_OZONE_WL = "1";
+  	MICRO_TRUECOLOR = "1";
   };
 
   # NVIDIA setup
@@ -254,9 +259,9 @@
   	# of just the bare essentials.
   	powerManagement.enable = false;
   	powerManagement.finegrained = false;
-  	open = true; # was true
+  	open = true;
   	nvidiaSettings = true;
-  	package = config.boot.kernelPackages.nvidiaPackages.stable;
+  	package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # Shell setup
