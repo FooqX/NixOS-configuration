@@ -1,5 +1,4 @@
 #### Note: this config is updated periodically when I feel like it
-Nvidia broke but i fixed it. You cannot believe how wonderful that is. Thank you to that one person that said the fix.
 
 Todo:
 - Install JetBrains toolbox and some apps there
