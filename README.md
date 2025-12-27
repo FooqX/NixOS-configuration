@@ -24,12 +24,12 @@ Graphics: NOTE: I HAVE DISABLED INTEL GPU USING MUX SWITCH
   Device-1: Intel Alder Lake-P GT2 [Iris Xe Graphics] vendor: ASUSTeK
     driver: i915 v: kernel arch: Xe bus-ID: 00:02.0
   Device-2: NVIDIA GA107M [GeForce RTX 3050 Ti Mobile] vendor: ASUSTeK
-    driver: nvidia v: 580.119.02 arch: Ampere bus-ID: 01:00.0
+    driver: nvidia v: 580.119.02 (version not up to date) arch: Ampere bus-ID: 01:00.0
   Device-3: Sonix USB2.0 HD UVC WebCam driver: uvcvideo type: USB
     bus-ID: 3-7:3
-  Display: wayland server: X.org v: 1.21.1.20 compositor: gnome-shell
+  Display: wayland server: X.org v: 1.21.1.20 (not up to date) compositor: gnome-shell
     driver: gpu: nv_platform,nvidia,nvidia-nvswitch resolution: 1920x1080~144Hz
-  API: Vulkan v: 1.4.328 drivers: nvidia,intel,llvmpipe surfaces: N/A
+  API: Vulkan v: 1.4.328 (not up to date) drivers : nvidia,intel,llvmpipe surfaces: N/A
     devices: 3
   API: EGL Message: EGL data requires eglinfo. Check --recommends.
   Info: Tools: api: vulkaninfo gpu: nvidia-settings,nvidia-smi
@@ -41,8 +41,8 @@ Audio:
     driver: snd_hda_intel v: kernel bus-ID: 01:00.1
   Device-3: ASUSTek C-Media Audio driver: hid-generic,snd-usb-audio,usbhid
     type: USB bus-ID: 3-9:4
-  API: ALSA v: k6.18.1 status: kernel-api
-  Server-1: PipeWire v: 1.4.9 status: active
+  API: ALSA v: k6.18.1 (not up to date) status: kernel-api
+  Server-1: PipeWire v: 1.4.9 (not up to date) status: active
 Network:
   Device-1: Intel Alder Lake-P PCH CNVi WiFi driver: iwlwifi v: kernel
     bus-ID: 00:14.3
@@ -60,8 +60,8 @@ Drives:
   ID-1: /dev/nvme0n1 vendor: Intel model: SSDPEKNU512GZ size: 476.94 GiB
     temp: 30.9 C
 Partition:
-  ID-1: / size: 127.16 GiB used: 28.17 GiB (22.1%) fs: ext4
+  ID-1: / size: 127.16 GiB used: 28.17 GiB (22.1%) (not up to date) fs: ext4
     dev: /dev/nvme0n1p6
-  ID-2: /boot size: 2 GiB used: 168.3 MiB (8.2%) fs: vfat
+  ID-2: /boot size: 2 GiB used: 168.3 MiB (8.2%) (not up to date) fs: vfat
     dev: /dev/nvme0n1p7
 ```
