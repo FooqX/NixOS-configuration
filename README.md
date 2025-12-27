@@ -1,7 +1,7 @@
 #### Note: this config is updated periodically when I feel like it
 
 Todo:
-- Install JetBrains toolbox and some apps there
+- try to experiment with overrides
 # My system
 ```
 Desktop: GNOME
