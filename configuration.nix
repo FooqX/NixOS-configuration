@@ -268,6 +268,10 @@
     set fish_greeting # Disable greeting
   '';
   users.defaultUserShell = pkgs.fish; # Make fish the default shell
+
+  programs.fish.shellAliases = {
+  	nvd-system = ''ls -v1 /nix/var/nix/profiles | tail -n 2 | awk '{print "/nix/var/nix/profiles/" $0}' - | xargs nvd diff'';
+  };
   
   # Disable the firewall altogether.
   networking.firewall.enable = false;
