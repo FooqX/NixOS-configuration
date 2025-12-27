@@ -65,3 +65,4 @@ Partition:
   ID-2: /boot size: 2 GiB used: 168.3 MiB (8.2%) (not up to date) fs: vfat
     dev: /dev/nvme0n1p7
 ```
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/21aef60f-32de-48b2-beb5-99c507820d42" />
