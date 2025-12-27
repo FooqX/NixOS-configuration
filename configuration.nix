@@ -110,15 +110,14 @@
 
   # NVIDIA hardware acceleration drivers for wayland
   hardware.graphics = {
-    	enable = true;
-    	extraPackages = with pkgs; [
-    	    # Libva, nvidia-vaapi packages for hardware acceleration
-    		libva-vdpau-driver
-    		libvdpau-va-gl
-    		nvidia-vaapi-driver
-    		egl-wayland
-    		mesa
-    	];
+    enable = true;
+	  extraPackages = with pkgs; [
+      libva-vdpau-driver
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+      egl-wayland
+      mesa
+    ];
   };
   
 
@@ -139,10 +138,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Bluetooth extra configuration (Pipewire).
@@ -174,14 +169,12 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     bibata-cursors
     curl
-    #firefox # not needed
-    #librewolf # installed from flatpak
     fish
     fastfetch
     freetype
@@ -189,13 +182,17 @@
     flatpak
     gcc15 # make sure to check
     git
+    go
+    gopls
     gnome-tweaks
     gparted
     inxi
     jq
+    jetbrains.goland
     micro
     p7zip
     parted
+    ptyxis # terminal
     pciutils
     polkit_gnome
     tree
@@ -257,10 +254,6 @@
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
-  	# Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-  	# Enable this if you have graphical corruption issues or application crashes after waking
-  	# up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-  	# of just the bare essentials.
   	powerManagement.enable = false;
   	powerManagement.finegrained = false;
   	open = true;
@@ -275,10 +268,7 @@
   '';
   users.defaultUserShell = pkgs.fish; # Make fish the default shell
   
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
+  # Disable the firewall altogether.
   networking.firewall.enable = false;
   networking.enableIPv6 = false;
 
