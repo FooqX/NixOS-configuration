@@ -190,6 +190,7 @@
     jq
     jetbrains.goland
     micro
+    nvd
     p7zip
     parted
     ptyxis # terminal
