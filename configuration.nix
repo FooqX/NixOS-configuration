@@ -96,6 +96,7 @@
   	epiphany # Web browser
   	gnome-characters
   	gnome-contacts
+  	gnome-console # replaced by ptyxis
   	gnome-maps
   	gnome-music
   	gnome-weather
@@ -112,12 +113,12 @@
   hardware.graphics = {
     enable = true;
 	  extraPackages = with pkgs; [
-      libva-vdpau-driver
-      libvdpau-va-gl
-      nvidia-vaapi-driver
-      egl-wayland
-      mesa
-    ];
+      	libva-vdpau-driver
+      	libvdpau-va-gl
+      	nvidia-vaapi-driver
+      	egl-wayland
+      	mesa
+      ];
   };
   
 
@@ -173,6 +174,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+  	rustup
     bibata-cursors
     curl
     fish
